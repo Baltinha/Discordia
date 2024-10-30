@@ -4,52 +4,48 @@ using UnityEngine.UI;
 public class OpenDoor : Interactable
 {
     [Header("Porta")]
-    public GameObject Door;
-    public GameObject needHideAnything;
-    public bool needToInteract;
-    [HideInInspector]
-    public bool interacted = false;
+    [SerializeField] private GameObject m_door;
+    [SerializeField] private GameObject m_needHideAnything;
+    private bool m_needToInteract;
+    private bool m_interacted = false;
 
-    [Header("ImagemMap")]
-    public Image newImage;
-    public GameObject imageHolder;
 
     [Header("Setting Triggers")]
-    public TriggersStructur[] needToSet;
+    [SerializeField] private TriggersStructur[] m_needToSet;
 
     [Header("Som")]
-    public string nomeSom;
-    private AudioManager som;
+    public string m_nomeSom;
+    private AudioManager m_som;
 
     private void Start()
     {
-        som = GameObject.FindObjectOfType<AudioManager>();
+        m_som = GameObject.FindObjectOfType<AudioManager>();
 
     }
     public override void Interact()
     {
-        interacted = true;
+        m_interacted = true;
         DestroyDoor();
     }
 
     public void DestroyDoor()
     {
-        Destroy(Door);
-        if (!needToInteract)
+        Destroy(m_door);
+        if (!m_needToInteract)
         {
             Destroy(this.gameObject);
             return;
         }
 
-        if (som != null)
-            som.Play(nomeSom);
+        if (m_som != null)
+            m_som.Play(m_nomeSom);
 
-        if (needHideAnything != null)
-            needHideAnything.SetActive(false);
+        if (m_needHideAnything != null)
+            m_needHideAnything.SetActive(false);
 
-        if (needToSet != null && interacted)
+        if (m_needToSet != null && m_interacted)
         {
-            foreach (var set in needToSet)
+            foreach (var set in m_needToSet)
             {
                 if (set.elemento != null)
                 {

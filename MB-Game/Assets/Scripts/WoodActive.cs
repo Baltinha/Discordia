@@ -4,7 +4,7 @@ using UnityEngine;
 public class WoodActive : Interactable
 {
     public GameObject lantern, oldPlayerPosition;
-    public GameManager manager;
+    private GameManager manager;
     public Transform spotBrigeCamera;
     public GameObject PlacaExit;
 
@@ -16,7 +16,7 @@ public class WoodActive : Interactable
 
     private void Start()
     {
-        manager = GameObject.FindObjectOfType<GameManager>();
+        manager = FindObjectOfType<GameManager>();
         lantern = GameObject.FindGameObjectWithTag("Lantern");
         oldPlayerPosition = GameObject.FindGameObjectWithTag("Orientention");
     }

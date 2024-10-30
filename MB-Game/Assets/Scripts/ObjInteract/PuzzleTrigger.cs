@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class PuzzleTrigger : Interactable
 {
-    private GameManager manager;
+    private GameManager m_manager;
 
     public GameObject Words;
     public GameObject door;
-    [HideInInspector] public List<GameObject> puzzleInteract;
+    private List<GameObject> puzzleInteract;
 
     private bool puzzleSpawn;
 
     public override void Interact()
     {
-        if (manager.player.lantern == null)
+        if (m_manager.player.Lantern == null)
             return;
-        else if (manager.player.lantern.luzAtiva == true)
+        else if (m_manager.player.Lantern.luzAtiva == true)
         {
             if (!puzzleSpawn)
             {
@@ -33,7 +33,7 @@ public class PuzzleTrigger : Interactable
     void Start()
     {
         //puzzleInteract = new List<GameObject>();
-        manager = FindObjectOfType<GameManager>();
+        m_manager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame

@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class LoadSceneTrigger : MonoBehaviour
 {
-    private GameManager manager;
-    public string level;
-    public GameObject door;
+    private GameManager m_manager;
+    [SerializeField] private string m_level;
+    [SerializeField] private GameObject m_door;
 
     private void Start()
     {
-        manager = GameObject.FindObjectOfType<GameManager>();
+        m_manager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            manager.LoadLevel(level);
-            if (door == null)
+            m_manager.LoadLevel(m_level);
+            if (m_door == null)
                 return;
-            door.SetActive(false);
+            m_door.SetActive(false);
         }
     }
 }

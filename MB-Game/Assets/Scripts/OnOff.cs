@@ -3,31 +3,31 @@ using UnityEngine;
 
 public class OnOff : MonoBehaviour
 {
-    public float temp;
-    private Light light;
-    private bool lights;
+    [SerializeField]private float m_temp;
+    private Light m_light;
+    private bool m_lights;
 
     void Start()
     {
-        light = GetComponentInChildren<Light>();
+        m_light = GetComponentInChildren<Light>();
     }
 
     void FixedUpdate()
     {
-        StartCoroutine(LightBroken(temp));
+        StartCoroutine(LightBroken(m_temp));
     }
     private IEnumerator LightBroken(float value)
     {
-        if (lights)
+        if (m_lights)
         {
-            light.enabled = false;
-            lights = false;
+            m_light.enabled = false;
+            m_lights = false;
         }
         yield return new WaitForSeconds(value);
-        if (!lights)
+        if (!m_lights)
         {
-            light.enabled = true;
-            lights = true;
+            m_light.enabled = true;
+            m_lights = true;
         }
         yield return null;
 
